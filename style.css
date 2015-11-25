@@ -1,0 +1,45 @@
+* {
+  font-family: monospace;
+  font-size: 14px;
+}
+
+textarea {
+  width: 30%; /* Ширина поля в процентах */
+  height: 90%; /* Высота поля в пикселах */
+  resize: none; /* Запрещаем изменять размер */
+  float: right;
+}
+
+input {
+  margin-top: 10px;
+}
+
+input.button {
+  width: 30%;
+  float: right;
+}
+
+input#machine {
+  width: 68.2%;
+  float: left;
+}
+
+#output {
+  float: left;
+  border: 1px solid #AAA;
+  width: 68%;
+  height: 89.8%;
+  overflow: scroll;
+}
+
+div:first-child {
+  width: 68%;
+  float: left;
+  margin-bottom: 5px;
+}
+
+div:nth-child(2) {
+  width: 30%;
+  float: right;
+  margin-bottom: 5px;
+}
