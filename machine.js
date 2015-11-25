@@ -40,9 +40,8 @@ window.onload = function () {
 }
 
 window.onkeypress  = function(e){
-  if (!e) e = window.event;
   var keyCode = e.keyCode || e.which;
-  if (keyCode == '13'){
+  if (keyCode == '13' && e.shiftKey){
     executeCode();
   }
 }
