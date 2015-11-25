@@ -1,11 +1,11 @@
 "use strict"
-var placeholder = 'Enter your program in following format:\n\nAL > B0R\n\nWhere A, B = q1, q2... etc. (q0 = Z)\n\nA1L = q11L, Z1 = q01\n\nq11L --> q00 = A1 > Z0L';
+var placeholder = 'Enter your programm in following format:\nA1 > B0R\n\nWhere A, B ... Z = q1, q2 ... q0\nq11 --> q20L == A1 > B0L';
 var textarea; var output; var TM;
 
 function executeCode() {
   output.innerHTML = '';
   var code = '-' + textarea.value.replace(/ /g,'').replace(/\r?\n|\r/g, '-');
-  var command = '';
+  var command = ''; var count = 0;
   TM = new TuringMachine(document.getElementById('machine').value);
   TM.print();
   while (command[0] != 'Z') {
@@ -18,12 +18,17 @@ function executeCode() {
       TM.go(command[2]);
     } else {
       command = 'Z0';
-      alert('Wow!');
+      alert('No commands left. Did you forget to add Z?');
     }
   console.log('code: ' + code);
   console.log('block: ' + block);
   console.log('command: ' + command);
   if (code != '-') TM.print();
+  if (count > 100) {
+    alert('Error. More than 100 operations. \nLooks like infinite loop.');
+    break;
+  }
+  count++;
   }
 
 }
