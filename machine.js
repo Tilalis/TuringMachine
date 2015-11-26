@@ -6,15 +6,15 @@ function executeCode() {
   output.innerHTML = '';
   var code = '-' + textarea.value.replace(/ /g,'').replace(/\r?\n|\r/g, '-');
   var command = ''; var count = 0;
-  TM = new TuringMachine(document.getElementById('machine').value);
-  TM.print();
+  TM = new TuringMachine(document.getElementById('machine').value, true);
+  TM.print(output);
   while (command[0] != 'Z') {
     var block = TM.getFullState();
     if (code.indexOf(block) != -1) {
       block = '-' + block;
       command = code.substring(code.indexOf(block) + 4, code.indexOf(block) + 7)
       TM.setState(command[0]);
-      TM.setValue(parseInt(command[1]));
+      TM.setValue(command[1]);
       TM.go(command[2]);
     } else {
       command = 'Z0';
@@ -23,7 +23,7 @@ function executeCode() {
   console.log('code: ' + code);
   console.log('block: ' + block);
   console.log('command: ' + command);
-  if (code != '-') TM.print();
+  if (code != '-') TM.print(output);
   if (count > 100) {
     alert('Error. More than 100 operations. \nLooks like infinite loop.');
     break;
@@ -46,24 +46,27 @@ window.onkeypress  = function(e){
 }
 
 /*TuringMachine Class*/
-function TuringMachine(rawdata) {
+function TuringMachine(rawdata, rawcustomAlphabet) {
+  var customAlphabet = rawcustomAlphabet == null? false : rawcustomAlphabet;
   var rawdata = rawdata.split(' ');
-  var data = new Array();
-  for (var i = 0; i < rawdata.length; i++) 
-    if (rawdata[i].length == 3) {
-      for (var j = parseInt(rawdata[i][2]); j > 0; j--) {
-        data.push(Number(rawdata[i][0]));
-      } 
-    } 
-    else {
-      data.push(Number(rawdata[i]));
-    }
-
+  var data;
   var pointer = 0;
-  var maxPointer = data.length;
+  var maxPointer;
   var currentState = 'A';
 
-  for (var i = 0; i < data.length; i++) {data[i] = (data[i] <= 0) ? 0 : 1;}
+  var initializeData = function () {
+    data = new Array();
+    for (var i = 0; i < rawdata.length; i++) 
+      if (rawdata[i].length == 3) {
+        for (var j = parseInt(rawdata[i][2]); j > 0; j--) {
+          data.push(customAlphabet? rawdata[i][0] : Number(rawdata[i][0]));
+        } 
+      } 
+      else {
+        data.push(customAlphabet? rawdata[i] : Number(rawdata[i]));
+      }
+    maxPointer = data.length;
+  }
 
   var goLeft = function () {
     pointer--;
@@ -77,6 +80,7 @@ function TuringMachine(rawdata) {
     pointer++;
     if (pointer > (maxPointer - 1)) {
       data.push(0);
+      maxPointer++;
     }
   }
 
@@ -89,15 +93,16 @@ function TuringMachine(rawdata) {
 
   this.setState = function (state) { currentState = state }
   this.setValue = function (value) { 
-    value = (value <= 0) ? 0 : 1;
+    if (!customAlphabet) value = (value <= 0) ? 0 : 1;
     data[pointer] = value;
   }
   
   this.getFullState = function () {
     return currentState + data[pointer];
+    console.log(data[pointer]);
   }
 
-  this.print = function () {
+  this.print = function (output) {
     var machineBody= '';
     var spaces = '&nbsp;&nbsp;';
     var line = '';
@@ -112,4 +117,12 @@ function TuringMachine(rawdata) {
     }
     output.innerHTML += spaces + currentState + '<br>' + spaces + '∨' + '<br>' + line + '<br>' + machineBody + '<br>' + line + '<br>';
   }
+
+  this.toggleCustomAlphabet = function () {
+    customAlphabet = !customAlphabet;
+    customAlphabet? console.log('Custom Alphabet On') : console.log('Custom Alphabet Off');
+    initializeData();
+  }
+
+  initializeData();
 }
