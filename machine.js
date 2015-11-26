@@ -4,7 +4,8 @@ var textarea; var output; var TM;
 
 function executeCode() {
   output.innerHTML = '';
-  var code = '-' + textarea.value.replace(/ /g,'').replace(/\r?\n|\r/g, '-');
+  // Don't ever do smth like that
+  var code = '-' + textarea.value.replace(/ /g,'').replace(/\r?\n|\r/g, '-').replace(/\[[^\[]*?\]/g, '');
   var command = ''; var count = 0;
   TM = new TuringMachine(document.getElementById('machine').value, true);
   TM.print(output);
