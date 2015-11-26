@@ -5,7 +5,7 @@
 
 div#textarea {
   width: 30%;
-  height: 80%;
+  height: 90%;
   float: right;
   overflow: scroll;
   border: 1px solid #AAA;
@@ -36,7 +36,7 @@ input#machine {
   float: left;
   border: 1px solid #AAA;
   width: 68%;
-  height: 80%;
+  height: 90%;
   white-space: nowrap;
   overflow: scroll;
 }
