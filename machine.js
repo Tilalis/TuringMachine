@@ -25,7 +25,7 @@ function executeCode() {
   console.log('block: ' + block);
   console.log('command: ' + command);
   if (code != '-') TM.print(output);
-  if (count > 100) {
+  if (count > 10000) {
     alert('Error. More than 100 operations. \nLooks like infinite loop.');
     break;
   }
