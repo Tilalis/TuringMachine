@@ -1,5 +1,5 @@
 "use strict"
-var placeholder = 'Enter your program in following format:\n[State][Value] > [State][Value][Go]\n\nWhere State = {\'A\'..\'Z\'}\nGo = {\'L\', \'R\', Nothing}\nValue is any Symbol you want.\n\nProgram Example:\nA1 > B1R\nB1 > B1R\nB0 > Z0';
+var placeholder = 'Enter your program in following format:\n[State][Value] > [State][Value][Go]\n\nWhere State = {\'A\'..\'Z\'}\nGo = {\'L\', \'R\', Nothing}\nValue is any Symbol you want.\n\nProgram Example:\nA1 > B1R\nB1 > B1R\nB0 > Z0\n\nAlso you can use multiline comments.\n[This is a comment]\n\n[\nThis is a comment too\n]';
 var textarea; var output; var TM;
 
 function executeCode() {
