@@ -49,7 +49,7 @@ window.onkeypress  = function(e){
 /*TuringMachine Class*/
 function TuringMachine(rawdata, rawcustomAlphabet) {
   var customAlphabet = rawcustomAlphabet == null? false : rawcustomAlphabet;
-  var rawdata = rawdata.split(' ');
+  var rawdata = !(rawdata == null || rawdata.length == 0)? rawdata.split(' ') : [0];
   var data;
   var pointer = 0;
   var maxPointer;
