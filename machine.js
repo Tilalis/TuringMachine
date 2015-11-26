@@ -30,7 +30,6 @@ function executeCode() {
   }
   count++;
   }
-
 }
 
 window.onload = function () {
