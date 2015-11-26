@@ -25,12 +25,13 @@ function executeCode() {
   console.log('block: ' + block);
   console.log('command: ' + command);
   if (code != '-') TM.print(output);
-  if (count > 10000) {
-    alert('Error. More than 100 operations. \nLooks like infinite loop.');
+  if (count > 1000) {
+    alert('Error. More than 1000 operations. \nLooks like infinite loop.');
     break;
   }
   count++;
   }
+  output.scrollTop = output.scrollHeight;
 }
 
 window.onload = function () {
