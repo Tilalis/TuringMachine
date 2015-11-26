@@ -7,7 +7,6 @@ div#textarea {
   width: 30%;
   height: 90%;
   float: right;
-  overflow: scroll;
   border: 1px solid #AAA;
 }
 
@@ -16,6 +15,8 @@ textarea {
   height: 100%;
   resize: none;
   border: none;
+  overflow: scroll;
+  float: right;
 }
 
 input {
