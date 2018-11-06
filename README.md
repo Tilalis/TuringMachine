@@ -47,11 +47,11 @@ C- > Z1
 B0 > D0L  
 D1 > Z0  
 
-## | A x B = | 
+## *AxB=*
 
 > A1 > A1R  
 Ax > BxR  
-A| > A|R  
+A* > A*R  
 B1 > CaR  
 C1 > C1L  
 Cx > DxL  
@@ -59,13 +59,13 @@ C= > C=L
 Ca > CaL  
 D1 > EaR  
 Da > DaL  
-D| > G|R  
+D* > G*R  
 E1 > E1R  
 Ex > ExR  
 E= > E=R  
 Ea > EaR  
-E| > F1R  
-F0 > C|L  
+E* > F1R  
+F0 > C*L  
 Gx > HxR  
 Ga > G1R  
 H1 > CaR  
